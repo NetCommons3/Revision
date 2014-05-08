@@ -60,6 +60,11 @@ class RevisionBehaviorTest extends CakeTestCase {
 		);
 		$result = $this->Revision->afterSave($model, true);
 		$this->assertFalse($result);
+
+		$this->Revision->setup($model);
+		$result = $this->Revision->afterSave($model, true);
+		$this->assertFalse($result);
+
 		$settings = array(
 			'modelName' => 'Revision.RevisionTest',
 		);
@@ -78,5 +83,19 @@ class RevisionBehaviorTest extends CakeTestCase {
 		$this->assertEquals($revisionTest['RevisionTest']['id'], 1);
 		$this->assertEquals($revisionTest['RevisionTest']['status_id'], REVISION_STATUS_PUBLISHED);
 		$this->assertEquals($revisionTest['RevisionTest']['content'], $content);
+
+		$model->data['Revision'] = array();
+		$result = $this->Revision->afterSave($model, true);
+
+		$this->assertTrue($result);
+		$revisionTest = $this->RevisionTest->findById(1);
+		$this->assertEquals($revisionTest['RevisionTest']['id'], 1);
+		$this->assertEquals($revisionTest['RevisionTest']['status_id'], REVISION_STATUS_DRAFT);
+		$this->assertEquals($revisionTest['RevisionTest']['content'], $content);
+
+		// save Error
+		$this->Revision->revisionModel = $this->getMock('RevisionTest', array('save'));
+		$result = $this->Revision->afterSave($model, true);
+		$this->assertFalse($result);
 	}
 }

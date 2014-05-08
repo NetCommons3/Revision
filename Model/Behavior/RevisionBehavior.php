@@ -1,4 +1,4 @@
-<?php
+RevisionBehaviorTest.php<?php
 
 App::uses('ModelBehavior', 'Model');
 
@@ -14,6 +14,13 @@ class RevisionBehavior extends ModelBehavior {
  * @var array
  */
 	public $settings = array();
+
+/**
+ * revisionModel
+ *
+ * @var false|object
+ */
+	public $revisionModel = false;
 
 /**
  * Default setting values
@@ -35,6 +42,36 @@ class RevisionBehavior extends ModelBehavior {
 		} else {
 			$this->settings[$Model->alias] = $this->_defaults;
 		}
+		$this->__setupSettings($Model);
+	}
+
+/**
+ * afterSave, stop the timer started from a save.
+ *
+ * @param \Model $Model
+ * @param string $created
+ * @return boolean Always true
+ */
+	public function afterSave(Model $Model, $created, $options = array()) {
+		if (!$this->__checkRevisionModel($Model)) {
+			return false;
+		}
+		$modelName = $this->settings[$Model->alias]['modelName'];
+		$this->__setRevisionData($Model);
+		$Revision = $this->__getRevisionModel($modelName);
+		if (empty($Revision) || !$Revision->save($Model->data) ) {
+			return false;
+		}
+		return true;
+	}
+
+/**
+ * __setupSettings
+ *
+ * @param \Model $Model
+ * @return void
+ */
+	private function __setupSettings($Model) {
 		if (isset($this->settings[$Model->alias]['modelName'])) {
 			$modelName = $this->settings[$Model->alias]['modelName'];
 			list($plugin, $className) = pluginSplit($modelName);
@@ -49,44 +86,50 @@ class RevisionBehavior extends ModelBehavior {
 	}
 
 /**
- * Before save method. Called before all saves
- * @param Model $Model Model instance
- * @param array $options Options passed from Model::save().
- * @return boolean true to continue, false to abort the save
+ * __getRevisionStatusId
+ *
+ * @param \Model $Model
+ * @return void
  */
-	public function beforeSave(Model $Model, $options = array()) {
-		return true;
+	private function __setRevisionData($Model) {
+		$className = $this->settings[$Model->alias]['className'];
+		$Model->data[$className][$this->settings[$Model->alias]['foreignKey']] = $Model->id;
+		if (array_key_exists('is_published', $Model->data[$Model->alias]) && $Model->data[$Model->alias]['is_published']) {
+			$Model->data[$className]['status_id'] = REVISION_STATUS_PUBLISHED;
+		} else {
+			$Model->data[$className]['status_id'] = REVISION_STATUS_DRAFT;
+		}
 	}
 
 /**
- * afterSave, stop the timer started from a save.
+ * __checkRevisionModel
  *
  * @param \Model $Model
- * @param string $created
- * @return boolean Always true
+ * @return boolean
  */
-	public function afterSave(Model $Model, $created, $options = array()) {
+	private function __checkRevisionModel($Model) {
 		if (!isset($this->settings[$Model->alias]['modelName']) ||
 			!isset($this->settings[$Model->alias]['className']) ||
 			!isset($this->settings[$Model->alias]['foreignKey'])) {
 			return false;
 		}
-		$modelName = $this->settings[$Model->alias]['modelName'];
 		$className = $this->settings[$Model->alias]['className'];
-		if (isset($Model->data[$className])) {
-			$Model->data[$className][$this->settings[$Model->alias]['foreignKey']] = $Model->id;
-			if (array_key_exists('is_published', $Model->data[$Model->alias]) && $Model->data[$Model->alias]['is_published']) {
-				$Model->data[$className]['status_id'] = REVISION_STATUS_PUBLISHED;
-			} else {
-				$Model->data[$className]['status_id'] = REVISION_STATUS_DRAFT;
-			}
-			$Revision = ClassRegistry::init($modelName);
-			if (!$Revision->save($Model->data) ) {
-				return false;
-			}
-		} else {
+		if (!isset($Model->data[$className])) {
 			return false;
 		}
 		return true;
+	}
+
+/**
+ * __getRevisionModel
+ *
+ * @param string $modelName
+ * @return \Model $Model
+ */
+	private function __getRevisionModel($modelName) {
+		if (empty($this->revisionModel)) {
+			$this->revisionModel = ClassRegistry::init($modelName);
+		}
+		return $this->revisionModel;
 	}
 }
