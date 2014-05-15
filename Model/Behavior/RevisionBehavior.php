@@ -1,4 +1,4 @@
-RevisionBehaviorTest.php<?php
+<?php
 
 App::uses('ModelBehavior', 'Model');
 

@@ -23,6 +23,7 @@ Configure::write('TinyMCE.editorOptions', array(
 // TODO: test
 if (class_exists('Purifier')) {
 	Purifier::config('Auto', array(
+			'Cache.SerializerPath' => APP . 'tmp' . DS . 'cache',
 			'HTML.AllowedElements' => 'a, em, blockquote, p, strong, pre, code, span, div, ul, ol, li, img',
 			'HTML.AllowedAttributes' => 'a.href, a.title, img.src, img.alt'
 		)
