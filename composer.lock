@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "379400f44bca0ef6a61e4085c980bb36",
+    "hash": "1e82748e7706e52516840ea8ee92fb5b",
     "packages": [
         {
             "name": "cakedc/migrations",
@@ -44,16 +44,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "2.4.9",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "4b5e3c176ece9ddab5ac438cfba0bdcdd0d3ab9e"
+                "reference": "0fd12c7a684417026bd56ac6d1fc4047a563c96d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/4b5e3c176ece9ddab5ac438cfba0bdcdd0d3ab9e",
-                "reference": "4b5e3c176ece9ddab5ac438cfba0bdcdd0d3ab9e",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/0fd12c7a684417026bd56ac6d1fc4047a563c96d",
+                "reference": "0fd12c7a684417026bd56ac6d1fc4047a563c96d",
                 "shasum": ""
             },
             "require": {
@@ -83,7 +83,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-04-30 01:52:10"
+            "time": "2014-05-18 02:39:27"
         },
         {
             "name": "cakephp/debug_kit",
@@ -610,6 +610,51 @@
             "time": "2014-05-07 17:04:22"
         },
         {
+            "name": "netcommons/rich-text-editor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NetCommons3/RichTextEditor.git",
+                "reference": "5de297a5703e8fa97d193fce575060224d7b19fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NetCommons3/RichTextEditor/zipball/5de297a5703e8fa97d193fce575060224d7b19fe",
+                "reference": "5de297a5703e8fa97d193fce575060224d7b19fe",
+                "shasum": ""
+            },
+            "require": {
+                "cakedc/migrations": "~2.2",
+                "cakephp/cakephp": "~2.4",
+                "cakephp/debug_kit": "~2.2",
+                "components/jquery": "~2.1",
+                "twbs/bootstrap": "~3.1"
+            },
+            "require-dev": {
+                "ryu818/html-purifier": "dev-master",
+                "ryu818/tiny-mce": "dev-master",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "NetCommons License"
+            ],
+            "authors": [
+                {
+                    "name": "NetCommons Community",
+                    "homepage": "https://github.com/NetCommons3/RichTextEditor/graphs/contributors"
+                }
+            ],
+            "description": "RichTextEditorPlugin for Cakephp",
+            "homepage": "http://www.netcommons.org/",
+            "keywords": [
+                "cakephp",
+                "rich-text-editor"
+            ],
+            "time": "2014-05-20 00:44:55"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -653,12 +698,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ryu818/HtmlPurifier.git",
-                "reference": "a24026528b0540251e8d1e75f1def59a79b8c931"
+                "reference": "59d3b8f2ba5a66764929ac0e3aaa4844152525bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ryu818/HtmlPurifier/zipball/a24026528b0540251e8d1e75f1def59a79b8c931",
-                "reference": "a24026528b0540251e8d1e75f1def59a79b8c931",
+                "url": "https://api.github.com/repos/ryu818/HtmlPurifier/zipball/59d3b8f2ba5a66764929ac0e3aaa4844152525bf",
+                "reference": "59d3b8f2ba5a66764929ac0e3aaa4844152525bf",
                 "shasum": ""
             },
             "require": {
@@ -688,40 +733,7 @@
                 "tidy",
                 "validation"
             ],
-            "time": "2014-05-13 03:37:49"
-        },
-        {
-            "name": "ryu818/tiny-mce",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ryu818/TinyMCE.git",
-                "reference": "b4a8c4bd00e668f34582a28d553c08cdffab528b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ryu818/TinyMCE/zipball/b4a8c4bd00e668f34582a28d553c08cdffab528b",
-                "reference": "b4a8c4bd00e668f34582a28d553c08cdffab528b",
-                "shasum": ""
-            },
-            "type": "cakephp-plugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "NetCommons Community",
-                    "homepage": "https://github.com/ryu818/TinyMCE/graphs/contributors"
-                }
-            ],
-            "description": "TinyMCE plugin for CakePHP",
-            "homepage": "http://github.com/ryu818/TinyMCE",
-            "keywords": [
-                "html",
-                "wysiwyg"
-            ],
-            "time": "2014-05-13 05:03:13"
+            "time": "2014-05-13 11:25:45"
         },
         {
             "name": "satooshi/php-coveralls",
@@ -729,12 +741,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/satooshi/php-coveralls.git",
-                "reference": "9fce7133a1d79b19f38a8fc975009703468172f0"
+                "reference": "b7271847c84d160f5b0aae83e45c225e8ffc96f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/9fce7133a1d79b19f38a8fc975009703468172f0",
-                "reference": "9fce7133a1d79b19f38a8fc975009703468172f0",
+                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/b7271847c84d160f5b0aae83e45c225e8ffc96f4",
+                "reference": "b7271847c84d160f5b0aae83e45c225e8ffc96f4",
                 "shasum": ""
             },
             "require": {
@@ -796,7 +808,7 @@
                 "github",
                 "test"
             ],
-            "time": "2014-03-27 16:05:26"
+            "time": "2014-05-14 13:09:37"
         },
         {
             "name": "symfony/config",
@@ -1113,7 +1125,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "ryu818/html-purifier": 20,
-        "ryu818/tiny-mce": 20,
+        "netcommons/rich-text-editor": 20,
         "satooshi/php-coveralls": 20
     },
     "platform": [

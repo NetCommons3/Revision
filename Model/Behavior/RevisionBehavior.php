@@ -92,12 +92,14 @@ class RevisionBehavior extends ModelBehavior {
  * @return void
  */
 	private function __setRevisionData($Model) {
+		$statusId = Configure::read('Revision.status_id');
+
 		$className = $this->settings[$Model->alias]['className'];
 		$Model->data[$className][$this->settings[$Model->alias]['foreignKey']] = $Model->id;
 		if (array_key_exists('is_published', $Model->data[$Model->alias]) && $Model->data[$Model->alias]['is_published']) {
-			$Model->data[$className]['status_id'] = REVISION_STATUS_PUBLISHED;
+			$Model->data[$className]['status_id'] = $statusId['published'];
 		} else {
-			$Model->data[$className]['status_id'] = REVISION_STATUS_DRAFT;
+			$Model->data[$className]['status_id'] = $statusId['draft'];
 		}
 	}
 

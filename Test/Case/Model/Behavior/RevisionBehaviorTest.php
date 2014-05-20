@@ -52,11 +52,12 @@ class RevisionBehaviorTest extends CakeTestCase {
  * @return void
  */
 	public function testAfterSave() {
+		$statusId = Configure::read('Revision.status_id');
 		$model = ClassRegistry::init('Model', 'Model');
 		$model->alias = 'Revision';
 		$model->id = 10;
 		$model->data = array(
-			'Revision' => array('is_published' => 1)
+			'Revision' => array('is_published' => true)
 		);
 		$result = $this->Revision->afterSave($model, true);
 		$this->assertFalse($result);
@@ -81,7 +82,7 @@ class RevisionBehaviorTest extends CakeTestCase {
 		$this->assertTrue($result);
 		$revisionTest = $this->RevisionTest->findById(1);
 		$this->assertEquals($revisionTest['RevisionTest']['id'], 1);
-		$this->assertEquals($revisionTest['RevisionTest']['status_id'], REVISION_STATUS_PUBLISHED);
+		$this->assertEquals($revisionTest['RevisionTest']['status_id'], $statusId['published']);
 		$this->assertEquals($revisionTest['RevisionTest']['content'], $content);
 
 		$model->data['Revision'] = array();
@@ -90,7 +91,7 @@ class RevisionBehaviorTest extends CakeTestCase {
 		$this->assertTrue($result);
 		$revisionTest = $this->RevisionTest->findById(1);
 		$this->assertEquals($revisionTest['RevisionTest']['id'], 1);
-		$this->assertEquals($revisionTest['RevisionTest']['status_id'], REVISION_STATUS_DRAFT);
+		$this->assertEquals($revisionTest['RevisionTest']['status_id'], $statusId['draft']);
 		$this->assertEquals($revisionTest['RevisionTest']['content'], $content);
 
 		// save Error
