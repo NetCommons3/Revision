@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "52039bc5f6aea5a4b85b7c9ee1776c39",
+    "hash": "c19a19e320d4a66721c3691e93c38501",
     "packages": [
         {
             "name": "cakedc/migrations",
@@ -474,98 +474,6 @@
     ],
     "packages-dev": [
         {
-            "name": "burzum/cakephp-html-purifier",
-            "version": "dev-myFeature",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ryu818/cakephp-html-purifier.git",
-                "reference": "4035d738ffc69446659ce241a693a445ee633b82"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ryu818/cakephp-html-purifier/zipball/b1c54652e8ed4760a232f945e1bd160cc887a275",
-                "reference": "4035d738ffc69446659ce241a693a445ee633b82",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "*",
-                "ezyang/htmlpurifier": "*",
-                "php": ">=5.3.2"
-            },
-            "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "HtmlPurifier"
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Florian Krämer",
-                    "email": "florian.kraemer@kreative-design.net",
-                    "homepage": "http://florian-kraemer.net",
-                    "role": "Author"
-                }
-            ],
-            "description": "HtmlPurifier plugin for CakePHP",
-            "homepage": "http://github.com/burzum/cakephp-html-purifier",
-            "keywords": [
-                "Purifier",
-                "html",
-                "markup",
-                "sensitization",
-                "tidy",
-                "validation"
-            ],
-            "time": "2014-04-04 01:44:44"
-        },
-        {
-            "name": "ezyang/htmlpurifier",
-            "version": "v4.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "6f389f0f25b90d0b495308efcfa073981177f0fd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/6f389f0f25b90d0b495308efcfa073981177f0fd",
-                "reference": "6f389f0f25b90d0b495308efcfa073981177f0fd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "HTMLPurifier": "library/"
-                },
-                "files": [
-                    "library/HTMLPurifier.composer.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "Edward Z. Yang",
-                    "email": "admin@htmlpurifier.org",
-                    "homepage": "http://ezyang.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Standards compliant HTML filter written in PHP",
-            "homepage": "http://htmlpurifier.org/",
-            "keywords": [
-                "html"
-            ],
-            "time": "2013-11-30 08:25:19"
-        },
-        {
             "name": "guzzle/guzzle",
             "version": "v3.9.1",
             "source": {
@@ -656,51 +564,6 @@
                 "web service"
             ],
             "time": "2014-05-07 17:04:22"
-        },
-        {
-            "name": "netcommons/rich-text-editor",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/NetCommons3/RichTextEditor.git",
-                "reference": "360f26ab856bd18b1cbb48c30914d6e206e31aea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/NetCommons3/RichTextEditor/zipball/360f26ab856bd18b1cbb48c30914d6e206e31aea",
-                "reference": "360f26ab856bd18b1cbb48c30914d6e206e31aea",
-                "shasum": ""
-            },
-            "require": {
-                "cakedc/migrations": "~2.2",
-                "cakephp/cakephp": "~2.4",
-                "cakephp/debug_kit": "~2.2",
-                "components/jquery": "~2.1",
-                "twbs/bootstrap": "~3.1"
-            },
-            "require-dev": {
-                "burzum/cakephp-html-purifier": "dev-myFeature",
-                "ryu818/tiny-mce": "dev-myFeature",
-                "satooshi/php-coveralls": "dev-master"
-            },
-            "type": "cakephp-plugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "NetCommons License"
-            ],
-            "authors": [
-                {
-                    "name": "NetCommons Community",
-                    "homepage": "https://github.com/NetCommons3/RichTextEditor/graphs/contributors"
-                }
-            ],
-            "description": "RichTextEditorPlugin for Cakephp",
-            "homepage": "http://www.netcommons.org/",
-            "keywords": [
-                "cakephp",
-                "rich-text-editor"
-            ],
-            "time": "2014-05-20 10:57:49"
         },
         {
             "name": "psr/log",
@@ -1129,8 +992,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "burzum/cakephp-html-purifier": 20,
-        "netcommons/rich-text-editor": 20,
         "satooshi/php-coveralls": 20
     },
     "platform": [

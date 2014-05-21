@@ -10,8 +10,6 @@
         "components/jquery":      "~2.1"
     },
     "require-dev": {
-        "burzum/cakephp-html-purifier": "dev-myFeature",
-        "netcommons/rich-text-editor":  "dev-master",
         "satooshi/php-coveralls":       "dev-master"
     },
     "license": "NetCommons License",
