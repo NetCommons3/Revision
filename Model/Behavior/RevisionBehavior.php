@@ -46,6 +46,44 @@ class RevisionBehavior extends ModelBehavior {
 	}
 
 /**
+ * Before save method. Called before all saves
+ *
+ * @param AppModel $Model Model instance
+ * @param array    $options Options
+ * @return boolean
+ */
+	public function beforeSave(Model $Model, $options = array()) {
+		if (!$this->__checkRevisionModel($Model)) {
+			return false;
+		}
+		$modelName = $this->settings[$Model->alias]['modelName'];
+		$Revision = $this->_getRevisionModel($modelName);
+		if (empty($Revision)) {
+			return false;
+		}
+		$Revision->set($Model->data);
+		if (!$this->__validatesFields($Model, $Revision)) {
+			return false;
+		}
+		return true;
+	}
+
+/**
+ * __validatesFields
+ *
+ * @param \Model $Model
+ * @param \Model $Revision
+ * @return boolean
+ */
+	private function __validatesFields($Model, $Revision) {
+		if (is_array($this->settings[$Model->alias]['fields']) &&
+			!$Revision->validates(array('fieldList' => $this->settings[$Model->alias]['fields']))) {
+			return false;
+		}
+		return true;
+	}
+
+/**
  * afterSave, stop the timer started from a save.
  *
  * @param \Model $Model
@@ -53,12 +91,8 @@ class RevisionBehavior extends ModelBehavior {
  * @return boolean Always true
  */
 	public function afterSave(Model $Model, $created, $options = array()) {
-		if (!$this->__checkRevisionModel($Model)) {
-			return false;
-		}
-		$modelName = $this->settings[$Model->alias]['modelName'];
+		$Revision = $this->revisionModel;
 		$this->__setRevisionData($Model);
-		$Revision = $this->__getRevisionModel($modelName);
 		if (empty($Revision) || !$Revision->save($Model->data) ) {
 			return false;
 		}
@@ -123,12 +157,12 @@ class RevisionBehavior extends ModelBehavior {
 	}
 
 /**
- * __getRevisionModel
+ * _getRevisionModel
  *
  * @param string $modelName
  * @return \Model $Model
  */
-	private function __getRevisionModel($modelName) {
+	protected function _getRevisionModel($modelName) {
 		if (empty($this->revisionModel)) {
 			$this->revisionModel = ClassRegistry::init($modelName);
 		}
